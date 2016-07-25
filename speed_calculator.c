@@ -7,7 +7,7 @@
 #include "speed_calculator.h"
 #include <time.h>
 
-void speed_calculator_init(struct speed_calculator * p_calc)
+void speed_calculator_init(speed_calculator_t* p_calc)
 {
 	p_calc->sc_last_update_time = 0;
 	p_calc->sc_slot[0] = 0;
@@ -15,7 +15,7 @@ void speed_calculator_init(struct speed_calculator * p_calc)
 	p_calc->sc_total_bytes = 0;
 }
 
-void speed_calculator_update(struct speed_calculator * p_calc, unsigned long bytes)
+void speed_calculator_update(speed_calculator_t* p_calc, unsigned long bytes)
 {
 	// unsigned long current = (unsigned long)(clock() / CLOCKS_PER_SEC);
 	unsigned long current = (unsigned long)time(NULL);
@@ -26,7 +26,7 @@ void speed_calculator_update(struct speed_calculator * p_calc, unsigned long byt
 	p_calc->sc_last_update_time = current;
 }
 
-unsigned long speed_calculator_get_speed(struct speed_calculator * p_calc)
+unsigned long speed_calculator_get_speed(speed_calculator_t* p_calc)
 {
 	// unsigned long current = (unsigned long)(clock() / CLOCKS_PER_SEC);
 	unsigned long current = (unsigned long)time(NULL);
@@ -37,7 +37,7 @@ unsigned long speed_calculator_get_speed(struct speed_calculator * p_calc)
 		return p_calc->sc_slot[idx ^ 0x1];
 }
 
-unsigned long long speed_calculator_get_total_bytes(struct speed_calculator * p_calc)
+unsigned long long speed_calculator_get_total_bytes(speed_calculator_t* p_calc)
 {
 	return p_calc->sc_total_bytes;
 }
@@ -57,7 +57,7 @@ unsigned long long speed_calculator_get_total_bytes(struct speed_calculator * p_
 #include <stdlib.h>
 int main()
 {
-	struct speed_calculator calc;
+	speed_calculator_t calc;
 	speed_calculator_init(&calc);
 	srand((unsigned int)time(NULL));
 	int i = 0;
