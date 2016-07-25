@@ -1,5 +1,5 @@
 # speed_calculator
-Simple speed calculator. Maintain speed in seconds.
+Simple data transfer speed calculator. Maintain speed in seconds.
 
 # Test sample code
 ```c
