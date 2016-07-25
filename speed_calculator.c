@@ -1,3 +1,9 @@
+////////////////////////////////////////
+// file: speed_calculator.c
+// author: XTao<vertextao@hotmail.com>
+// date: 2016-07-25
+////////////////////////////////////////
+
 #include "speed_calculator.h"
 #include <time.h>
 

@@ -1,3 +1,9 @@
+////////////////////////////////////////
+// file: speed_calculator.h
+// author: XTao<vertextao@hotmail.com>
+// date: 2016-07-25
+////////////////////////////////////////
+
 #ifndef __SPEED_CALCULATOR_H__
 #define __SPEED_CALCULATOR_H__
 
