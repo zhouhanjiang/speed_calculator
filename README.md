@@ -1,4 +1,4 @@
-# speed_calculator
+﻿# speed_calculator
 Simple data transfer speed calculator. Maintain speed in seconds.
 
 # Test sample code
