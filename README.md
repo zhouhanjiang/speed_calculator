@@ -1,7 +1,7 @@
 ﻿# speed_calculator
 Simple data transfer speed calculator. Maintain speed in seconds.
 
-# Test sample code
+## **C version** test sample code
 ```c
 #ifdef _WIN32
 #include <Windows.h>
@@ -48,4 +48,27 @@ int main()
 
 	getchar();
 }
+```
+
+## **Python version** test sample
+```python
+if __name__ == '__main__':
+    import random
+    calc = speed_calculator()
+    c = 0
+    while 1:
+        r = random.randint(800000, 1000000)
+        calc.update(r)
+        c += 1
+
+        # sleep 0.1 second
+        time.sleep(0.1)
+
+        if c % 10 == 0:
+            # print speed every 1 second
+            print calc.get_speed()
+
+        if c > 100:
+            # break after 10 seconds
+            break
 ```
