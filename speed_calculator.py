@@ -12,6 +12,7 @@ class speed_calculator:
     
     def __init__(self):
         self.m_slots = [0, 0]
+        self.m_first_update_time = 0
         self.m_last_update_time = 0
         self.m_total_bytes = 0
         
@@ -23,6 +24,9 @@ class speed_calculator:
         else:
             self.m_slots[idx] = update_bytes
         
+        if self.m_first_update_time is 0:
+            self.m_first_update_time = now
+            
         self.m_last_update_time = now
         self.m_total_bytes += update_bytes
         
@@ -35,6 +39,19 @@ class speed_calculator:
         else:
             return self.m_slots[idx]
             
+    def get_total_bytes(self):
+        return self.m_total_bytes
+    
+    def get_first_update_time(self):
+        return self.m_first_update_time
+
+    def get_last_update_time(self):
+        return self.m_last_update_time
+        
+    def get_elapsed_time(self, now = None):
+        if now is None:
+            return self.m_last_update_time - self.m_first_update_time
+        return now - self.m_first_update_time
 
 ################## Test ##################
 if __name__ == '__main__':
@@ -56,4 +73,7 @@ if __name__ == '__main__':
         if c > 100:
             # break after 10 seconds
             break
+    print "============"
+    print calc.get_total_bytes()
+    print calc.get_elapsed_time()
         
