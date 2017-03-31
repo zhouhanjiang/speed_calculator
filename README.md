@@ -14,33 +14,37 @@ Simple data transfer speed calculator. Maintain speed in seconds.
 #endif
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 int main()
 {
-	struct speed_calculator calc;
+	speed_calculator_t calc;
 	speed_calculator_init(&calc);
 	srand((unsigned int)time(NULL));
 	int i = 0;
+    unsigned long current;
 	for (; i < 100; ++i)
 	{
 		sc_sleep(100);
-
+        current = (unsigned long)time(NULL);
 		// random number [80000, 100000)
 		unsigned long bytes = 80000 + rand() % 20000;
 
-		speed_calculator_update(&calc, bytes);
+		speed_calculator_update(&calc, bytes, current);
 		if (i % 15 == 0)
 		{
-			unsigned long speed = speed_calculator_get_speed(&calc);
+			unsigned long speed = speed_calculator_get_speed(&calc, current);
 			printf("speed: %lu\n", speed);
 		}
 	}
 
 	sc_sleep(1000);
-	unsigned long speed = speed_calculator_get_speed(&calc);
+    current = (unsigned long)time(NULL);
+	unsigned long speed = speed_calculator_get_speed(&calc, current);
 	printf("idle 1s, speed: %lu\n", speed);
 
 	sc_sleep(1000);
-	speed = speed_calculator_get_speed(&calc);
+    current = (unsigned long)time(NULL);
+	speed = speed_calculator_get_speed(&calc, current);
 	printf("idle 2s, speed: %lu\n", speed);
 
 	unsigned long long total_bytes = speed_calculator_get_total_bytes(&calc);
